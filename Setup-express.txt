@@ -1,0 +1,70 @@
+#Pre-Requisitos:
+
+Ter instalado o NODEjs e NPM. Além do Mysql-server.
+
+#Instalar o express-generator:
+
+sudo npm install express-generator -g
+
+#criar o app
+
+express nome_pasta_app
+
+#instalar dependencias
+
+cd nome_pasta_app
+
+npm install
+
+npm start
+
+#rodar servidor app
+
+node ./bin/www ou npm start
+
+##################################################################
+
+#instalar outras dependencias necessarias
+
+##mysql
+
+npm install mysql --save
+
+##handlebars
+
+npm install express-handlebars --save
+
+## body-parser
+
+npm install body-parser --save
+
+##Gerador de Boleto
+
+npm install brasil --save
+
+##Gerador de PDF
+
+npm install pdfkit --save
+
+##############################################################
+OBS.:
+adicionar o handlebars no app.js
+
+var hbs = require('express-handlebars');
+
+// view engine setup
+app.engine('hbs', hbs({extname: 'hbs'}));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+###############################################################
+OBS.: 
+para requerir o mysql:
+
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'password',
+  database : 'nome_bd'
+});
