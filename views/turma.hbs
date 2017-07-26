@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" href="/images/favicon.png">
+    <title>Instituto de Línguas</title>
+
+    <link href="/css/admin.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!--Navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+         <a class="navbar-brand" href="/">ILG</a>
+        <!--<a class="navbar-brand" href="#">
+          <img alt="Brand" src="images/favicon.png">
+        </a>-->
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Funcionário<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/admin">Inserir</a></li>
+              <li><a href="/admin/visua">Visualizar</a></li>
+              <li><a href="/admin/update">Atualizar</a></li>
+              <li><a href="/admin/delete">Excluir</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cursos<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/admin/cursos">Inserir</a></li>
+              <li><a href="/admin/cursos/visua">Visualizar</a></li>
+              <li><a href="/admin/cursos/update">Atualizar</a></li>
+              <li><a href="/admin/cursos/delete">Excluir</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Turma<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/admin/turma">Inserir</a></li>
+              <li><a href="/admin/turma/visua">Visualizar</a></li>
+              <li><a href="/admin/turma/update">Atualizar</a></li>
+              <li><a href="/admin/turma/delete">Excluir</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li><a href="/admin/habilita">Habilitar</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  </nav>
+  <!--End-Navbar-->
+
+  {{# if inserido}}
+    <div class="alert alert-success" role="alert" style="max-width: 500px; margin: 0 auto;">Turma Inserida</div>
+  {{/if}}
+  {{# if erro}}
+    <div class="alert alert-danger" role="alert" style="max-width: 500px; margin: 0 auto;">Problema ao Inserir</div>
+  {{/if}}
+
+  <form action="/admin/turma/insereTur" method="post">
+    <h3>Inserir Nova Turma: </h3>
+    <div class="form-group">
+        <label >Código do Curso</label>
+        <input type="text" class="form-control" placeholder="Número do curso ao qual pertence" name="cod_cur">
+    </div>
+    <div class="form-group">
+      <label >Horário</label>
+      <input type="text" class="form-control" placeholder="ex: 13:30" name="horario">
+    </div>
+
+      <div class="form-group">
+          <label >Descrição</label>
+          <input type="text" class="form-control" placeholder="ex: Inglês - Terça/Quinta - 13:30" name="descricao">
+      </div>
+
+    <div class="form-group">
+      <label>Professor</label>
+      <input type="text" class="form-control" placeholder="Nome do Professor" name="prof">
+    </div>
+
+      <div class="form-group">
+          <label >CPF do Professor</label>
+          <input type="text" class="form-control" placeholder="ex: 12345678912" name="cpf_prof">
+      </div>
+
+    <div class="form-group">
+      <label>Número de Vagas</label>
+      <input type="text" class="form-control" placeholder="ex.: 22" name="num">
+    </div>
+
+    <div class="form-group">
+      <label>Código da Turma</label>
+      <input type="text" class="form-control" placeholder="ex.: 2211" name="cod_turma">
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Inserir Turma</button>
+  </form>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

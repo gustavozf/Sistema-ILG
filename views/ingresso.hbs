@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" href="/images/favicon.png">
+    <title>Instituto de Línguas</title>
+
+    <link href="/css/ingresso.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <script>
+      function disableButton(){
+          var aux = document.getElementById("posicUEM").value;
+          var bool = Boolean(((aux == 0) || (aux == 4)) || ((aux == 5) || (aux >= 9)));
+
+          if(bool){
+            document.getElementById("inputFile").disabled = true;
+          } else {
+            document.getElementById("inputFile").disabled = false;
+          }
+      }
+      $('.modal').modal('show');
+
+    </script>
+	    <nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="/">ILG</a>
+		    </div>
+		    <div id="navbar" class="navbar-collapse collapse">
+		      <ul class="nav navbar-nav">
+		        <li><a href="/estrutura">Estrutura</a></li>
+		        <li class="active"><a href="/ingresso">Ingresso</a></li>
+		        <li><a href="/contato">Contato</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="/login">Aluno</a></li>
+		            <li><a href="/loginIngressante">Candidato</a></li>
+		            <li role="separator" class="divider"></li>
+		            <li class="dropdown-header">Workers</li>
+		            <li><a href="/login">Administrador</a></li>
+		            <li><a href="/login">Funcionário</a></li>
+                <li><a href="/login">Professor</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+
+  {{# if habilitado}}
+  <form action="/ingresso/inserirIngres" method="post">
+      <a class="btn" data-toggle="modal" href="#myModal" >Launch Modal</a>
+
+      {{# if inserido}}
+          <div id="myModal" class="modal fade in" role="dialog">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Caro Ingressante</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>Seu Login e Senha para acessar o sistema serão:</p>
+                          <p>Login: CPF</p>
+                          <p>Senha: RG</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" href="/estrutura.hbs">Close</button>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      {{/if}}
+      {{# if erro}}
+          <div id="myModal" class="modal fade in" role="dialog">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <h4 class="modal-title">Erro</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>Por favor tente novamente</p>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal" href="/estrutura.hbs">Close</button>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      {{/if}}
+    <div class="form-group">
+        <label >Nome</label>
+        <in
+        put type="text" class="form-control" id="inputName" placeholder="Nome" name="nome">
+    </div>
+    <div class="form-group">
+      <label >Sobrenome</label>
+      <input type="text" class="form-control" id="inputSurname" placeholder="Sobrenome" name="sobrenome">
+    </div>
+
+    <div class="form-group">
+      <label>RG</label>
+      <input type="text" class="form-control" id="inputRG" placeholder="ex.: 145675439" name="rg">
+    </div>
+
+    <div class="form-group">
+      <label>CPF</label>
+      <input type="text" class="form-control" id="inputCPF" placeholder="ex.: 26456711384" name="cpf">
+    </div>
+
+    <div>
+      <label>Escolha o sexo: </label>
+      <select class="form-control" id = "sexo" name="sexo">
+        <option value = 'F' selected = "selected">Feminino</option>
+        <option value = 'M'>Masculino</option>
+        <option value = 'O'>Outro</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Data de Nascimento</label>
+      <input type="text" class="form-control" id="datNas" placeholder="dd/mm/aaaa" name="data_nasc">
+    </div>
+
+    <div class="form-group">
+      <label>Telefone</label>
+      <input type="text" class="form-control" id="inputTele" placeholder="ex.: 04499913456" name="telefone">
+    </div>
+
+    <div class="form-group">
+      <label>Rua</label>
+      <input type="text" class="form-control" id="inputRua" placeholder="ex.: Rua Sao Jose, Jd Paulista" name="logradouro">
+    </div>
+
+    <div class="form-group">
+      <label>Número</label>
+      <input type="text" class="form-control" id="inputNum" placeholder="ex.: 243" name="numero">
+    </div>
+
+    <div class="form-group">
+      <label>Complemento</label>
+      <input type="text" class="form-control" id="inputComp" placeholder="ex.: Ao lado da Praça" name="complemento">
+    </div>
+
+    <div class="form-group">
+      <label>CEP</label>
+      <input type="text" class="form-control" id="inputCEP" placeholder="XXXXX-XXX" name="cep">
+    </div>
+
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th>Curso</th>
+              <th>Dias</th>
+              <th>Horário</th>
+              <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td class="filterable-cell">Inglês</td>
+              <td class="filterable-cell">Seg/Qua</td>
+              <td class="filterable-cell">19h40</td>
+              <td >
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+              </td>
+          </tr>
+          <tr>
+              <td class="filterable-cell">Inglês</td>
+              <td class="filterable-cell">Ter/Qui</td>
+              <td class="filterable-cell">13h30</td>
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <td class="filterable-cell">Francês</td>
+              <td class="filterable-cell">Ter/Qui</td>
+              <td class="filterable-cell">15h30</td>
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+              </td>
+          </tr>
+          <tr>
+              <td class="filterable-cell">Italiano</td>
+              <td class="filterable-cell">Qua/Sex</td>
+              <td class="filterable-cell">17h30</td>
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+              </td>
+          </tr>
+           <tr>
+              <td class="filterable-cell">Espanhol</td>
+              <td class="filterable-cell">Escort</td>
+              <td class="filterable-cell">15h30</td>
+              <td>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox">
+                  </label>
+                </div>
+              </td>
+          </tr>
+          </tbody>
+
+      </table>
+    </div>
+
+    <div>
+      <label>Posição quanto à UEM</label>
+      <select class="form-control" id = "posicUEM" onchange="disableButton()" name="pos_uem">
+        <optgroup label = "Nível 0">
+        <option value = 0 selected = "selected">Não Vinculado à UEM</option>
+      </optgroup>
+
+      <optgroup label = "Nível 1">
+        <option value = 9>Acadêmico da UEM não vinculado a projeto ou programa</option>
+        <option value = 10>Servidor da UEM não matriculado em curso de pós-graduação</option>
+        <option value = 11>Filho de servidor da UEM</option>
+        <option value = 12>Servidor da UEM aposentado</option>
+        <option value = 13>Dependente de servidor da UEM aposentado</option>
+      </optgroup>
+
+      <optgroup label = "Nível 2">
+        <option value = 1>Servidor da UEM matriculado em curso de pós-graduação</option>
+        <option value = 2>Acadêmico de pós-graduação STRICTU SENSU na UEM</option>
+        <option value = 3>Acadêmico de graduação participante de PET</option>
+        <option value = 4>Acadêmico de graduação participante de iniciação científica</option>
+        <option value = 5>Acadêmico de graduação participante de projeto de pesquisa</option>
+        <option value = 6>Acadêmico de graduação participante de projeto de ensino</option>
+        <option value = 7>Acadêmico de graduação participante de projeto de extensão</option>
+        <option value = 8>Participantes de todos os programas de bolsas oferecidos pela UEM</option>
+      </optgroup>
+    </select>
+    <p class="help-block">Para mais informações sobre descontos e comprovantes necessários,
+      <a href="documents/Descontos_ILG.pdf" target="_blank">clique aqui!</a>
+    </p>
+    </div>
+
+    <!--<div class="checkbox">
+      <label>
+        <input type="checkbox"> Check me out
+      </label>
+    </div>-->
+
+    <div class="form-group">
+      <label for="inputFile">Anexar Comprovante</label>
+      <input type="file" id="inputFile" disabled>
+      <p class="help-block">Apenas serão aceitas imagens!</p>
+    <br /div>
+        <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Inscrever-se</button>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Caro Ingressante</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Seu Login e Senha para acessar o sistema serão:</p>
+                        <p>Login: CPF</p>
+                        <p>Senha: RG</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" href="/estrutura.hbs">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+  </form>
+  {{else}}
+  <div class="container">
+    <h1 align="center">Em breve...</h1>
+  </div>
+  {{/if}}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
