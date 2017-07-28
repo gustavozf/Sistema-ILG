@@ -158,11 +158,13 @@ router.post('/turma/insereTur', function(req, res, next) {
 	var num = req.body.num;
     var cpf_prof = "'" + req.body.cpf_prof + "'";
     var descricao = "'" + req.body.descricao+ "'";
+    var disp = req.body.disp ;
 
 	var mid_query = cod_turma + ',' + horario + ',' + prof + ','+ cpf_prof +
-                ','+cod_curso + ',' + num + ','+descricao+');';
+                ','+cod_curso + ',' + num + ','+descricao+','+disp+');';
 	var final_query = inic_query + mid_query;
 
+    //console.log(final_query);
 	pool.getConnection(function(err,connection){
         if (err) {
           connection.release();
@@ -354,10 +356,11 @@ router.post('/turma/updateTur', function(req, res, next) {
 	var num = 'NUM_VAGAS= '+ req.body.num;
 	var cpf_prof = "CPF_PROFESSOR='" + req.body.cpf_prof + "'";
 	var descricao = "DESCRICAO='" + req.body.descricao+ "'";
+	var disp = "DISPONIBILDIADE='"+ req.body.disp+ "'";
 
 
 	var mid_query = horario + ',' + prof + ',' +cpf_prof +
-                ',' +num +','+descricao+' WHERE COD_TURMA= ' + cod_turma+';';
+                ',' +num +','+descricao+','+disp+' WHERE COD_TURMA= ' + cod_turma+';';
 	var final_query = inic_query + mid_query;
 
 	pool.getConnection(function(err,connection){
