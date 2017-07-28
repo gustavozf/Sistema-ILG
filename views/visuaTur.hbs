@@ -94,6 +94,7 @@
               <th>CPF do Professor</th>
               <th>Código do Curso</th>
               <th>Número de Vagas</th>
+              <th>Disponibilidade</th>
           </tr>
           </thead>
           <tbody>
@@ -106,6 +107,11 @@
               <td class="filterable-cell">{{ this.CPF_PROFESSOR }}</td>
               <td class="filterable-cell">{{ this.TCOD_CURSO  }}</td>
               <td class="filterable-cell">{{ this.NUM_VAGAS }}</td>
+              {{# if this.DISPONIVEL}}
+                  <td class="filterable-cell">Disponível para Inscrição</td>
+              {{else}}
+                  <td class="filterable-cell">Não disponível para Inscrição</td>
+              {{/if}}
           </tr>
         {{/each}}
         </tbody>
