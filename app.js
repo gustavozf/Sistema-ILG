@@ -16,6 +16,7 @@ var admin = require('./routes/admin');
 var sobre = require('./routes/sobre');
 var aluno = require('./routes/aluno');
 var ingressante = require('./routes/ingressante');
+var funcionario = require('./routes/funcionario');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use('/admin', admin);
 app.use('/sobre', sobre);
 app.use('/aluno', aluno);
 app.use('/ingressante', ingressante);
+app.use('/funcionario', funcionario);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

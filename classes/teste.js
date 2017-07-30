@@ -1,4 +1,6 @@
-var Funcionario = require('./funcionario');
-var teste = new Funcionario();
+var controladorFuncionario = require('./controladorFuncionario');
+var teste = new controladorFuncionario();
 
-teste.makeListaAptos();
+teste.makeListaAptosUmaLista();
+teste.makeListaAptosDuasListas();
+

@@ -341,7 +341,6 @@ router.post('/updateFunc', function(req, res, next) {
         });
         connection.on('error', function(err) {
               throw err;
-              return;
         });
     });
     console.log('saiu!');

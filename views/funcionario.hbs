@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="icon" href="/images/favicon.png">
+    <title>Instituto de Línguas</title>
+
+    <link href="/css/admin.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ILG</a>
+            <!--<a class="navbar-brand" href="#">
+              <img alt="Brand" src="images/favicon.png">
+            </a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aluno<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/funcionario">Mover para outra turma</a></li>
+                        <li><a href="/funcionario/mostraAlunos">Visualização</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {{# if habilitado}}
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingresso<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/funcionario/insereNotas">Inserir Notas</a></li>
+                            <li><a href="/funcionario/segChamada">Segunda Chamada</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seleção<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/funcionario/realSelecao">Selecionar Candidatos</a></li>
+                            <!--<li><a href="/funcionario/realSelecaoDuas">Selecionar Candidatos (Duas Listas)</a></li>-->
+                            <li><a href="/documents/Aprovados.pdf" target="_blank">Visualizar Lista de Aprovados</a></li>
+                            <li><a href="/documents/AprovadosNaoUEM.pdf" target="_blank">Visualizar Lista: Não Vinculados</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {{/if}}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Sair</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</nav>
+<!--End-Navbar-->
+
+{{# if gerado}}
+    <div class="alert alert-success" role="alert" style="max-width: 500px; margin: 0 auto;">Seleção Realizada!
+        <br>Para visualizar, acesse "Visualizar Lista de Candidatos" no menu "Seleção"!</div>
+{{/if}}
+{{# if inserido}}
+    <div class="alert alert-success" role="alert" style="max-width: 500px; margin: 0 auto;">Aluno alterado de turma!</div>
+{{/if}}
+{{# if erro}}
+    <div class="alert alert-danger" role="alert" style="max-width: 500px; margin: 0 auto;">Erro!</div>
+{{/if}}
+
+<form action="/funcionario/moverAluno" method="post">
+    <h3>Mudar aluno de turma: </h3>
+    <div class="form-group">
+        <label >Numero de Inscrição</label>
+        <input type="text" class="form-control" id="inputName" placeholder="ex.: 1123" name="num">
+    </div>
+    <div class="form-group">
+        <label >Código do novo curso</label>
+        <input type="text" class="form-control" id="inputSurname" placeholder="ex.: 33" name="curso">
+    </div>
+
+    <div class="form-group">
+        <label>Código da nova turma</label>
+        <input type="text" class="form-control" id="inputRG" placeholder="ex.: 55" name="turma">
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary btn-block">Inserir</button>
+</form>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
